@@ -1,0 +1,27 @@
+FROM python:3.6
+
+ENV PYTHONUNBUFFERED 1
+
+RUN apt-get update && apt-get install -y tmux cron yarn
+RUN apt-get update && apt-get install -y ruby ruby-dev default-libmysqlclient-dev mysql-client
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+RUN apt-get install -y nodejs
+RUN gem install sass
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get update && apt-get -y install yarn
+
+ENV PORT 8000
+
+COPY . /code
+
+WORKDIR /code
+
+RUN yarn install 
+
+RUN pip install -r /code/requirements.txt
+RUN pip install mysqlclient
+RUN mkdir -p /code/staticroot
+
+# add yarn and build initial webpack during image building
+# RUN yarn build

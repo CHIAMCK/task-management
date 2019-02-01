@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'django_extensions',
+
 ]
 
 MIDDLEWARE = [
@@ -87,8 +89,12 @@ WSGI_APPLICATION = 'sec.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'sec_db',
+        'USER': 'root',
+        'PASSWORD': 'abc',
+        'HOST': 'db',
+        'PORT': '3306',
     }
 }
 
