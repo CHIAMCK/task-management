@@ -1,1 +1,13 @@
 .envrc
+
+.vscode
+
+db.sqlite3
+
+#########################
+# FOR DJANGO and IDE	#
+#########################
+*.pyc
+
+# Byte-compiled / optimized / DLL files
+__pycache__

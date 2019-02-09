@@ -152,3 +152,7 @@ SOCIALACCOUNT_EMAIL_REQUIRED = True
 SOCIALACCOUNT_EMAIL_VERIFICATION = 'none'
 SOCIALACCOUNT_QUERY_EMAIL = True
 
+# customize login and signup form, allauth
+ACCOUNT_FORMS = {
+    'login': 'accounts.forms.OverrideLoginForm',
+}

@@ -1,0 +1,17 @@
+<div clas="container mt-5">
+    <div class="card p-4">
+        <div class="card-body">
+            <h1>Login</h1>
+            <p ckass="text-muted">Sign In to your account</p>
+            <form class="form-group" id="login_form" method="POST" action="{% url 'account_login' %}" novalidate="">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div class="row">
+                    
+                </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+    
