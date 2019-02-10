@@ -14,7 +14,7 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+NEW_BASE_DIR = os.path.abspath(os.path.join(BASE_DIR))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
@@ -42,7 +42,10 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'django_extensions',
-
+    'crispy_forms',
+    'accounts',
+    'sec',
+    'dashboard',
 ]
 
 MIDDLEWARE = [
@@ -57,10 +60,23 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'sec.urls'
 
+CRISPY_TEMPLATE_PACK =  'bootstrap4'
+
+# custom template and project path
+SETTINGS_DIR = os.path.dirname(__file__)
+PROJECT_PATH = os.path.join(SETTINGS_DIR, os.pardir)
+PROJECT_PATH = os.path.abspath(PROJECT_PATH)
+
+ROOT_PROJECT_NAME = ''
+TEMPLATE_PATH = os.path.join(NEW_BASE_DIR, ROOT_PROJECT_NAME, 'templates',)  # root/master template path
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            TEMPLATE_PATH,
+            os.path.join(os.path.join(PROJECT_PATH, 'accounts',), 'templates'),
+            os.path.join(os.path.join(PROJECT_PATH, 'dashboard',), 'templates', 'dashboard'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -152,7 +168,11 @@ SOCIALACCOUNT_EMAIL_REQUIRED = True
 SOCIALACCOUNT_EMAIL_VERIFICATION = 'none'
 SOCIALACCOUNT_QUERY_EMAIL = True
 
+# other allauth setting
+ACCOUNT_ADAPTER = 'accounts.adapter.AccountAdapter'  # for allauth
+
 # customize login and signup form, allauth
 ACCOUNT_FORMS = {
     'login': 'accounts.forms.OverrideLoginForm',
-}
+
+}  # for allauth
