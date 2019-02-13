@@ -15,6 +15,8 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 NEW_BASE_DIR = os.path.abspath(os.path.join(BASE_DIR))
+STATIC_ROOT = os.path.join(NEW_BASE_DIR, 'static_r')
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
@@ -46,7 +48,17 @@ INSTALLED_APPS = [
     'accounts',
     'sec',
     'dashboard',
+    'webpack_loader',
+    'compressor',
+
 ]
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'bundles/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
+    }
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -152,6 +164,36 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(NEW_BASE_DIR, 'static'),
+    # os.path.join(NEW_BASE_DIR, 'static_media'),
+]
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+]
+
+# Compressor and Minify
+COMPRESS_ROOT = STATIC_ROOT
+COMPRESS_URL = STATIC_URL
+COMPRESS_STORAGE = STATICFILES_STORAGE
+COMPRESS_ENABLED = False  # True|False - True
+COMPRESS_OFFLINE = False  # True|False - might consider as False
+
+COMPRESS_CSS_FILTERS = [
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    'compressor.filters.cssmin.rCSSMinFilter',
+]
+COMPRESS_JS_FILTERS = [
+    'compressor.filters.jsmin.JSMinFilter',
+]
+# COMPRESS_OUTPUT_DIR = 'compressed'
+HTML_MINIFY = True
+KEEP_COMMENTS_ON_MINIFYING = False
+# END Compressor and Minify
 
 # allauth settings
 # https://django-allauth.readthedocs.io/en/latest/configuration.html

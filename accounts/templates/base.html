@@ -1,11 +1,19 @@
+{% load render_bundle from webpack_loader %}
+
 <!DOCTYPE html>
 <html>
   <head>
+    {% block main_js %}
+      {% render_bundle 'runtime' %}
+      {% render_bundle 'main_css' %}
+      {% render_bundle 'vendor' %}
+      {% render_bundle 'libs' %}
+    {% endblock %}
     <title>{% block head_title %}{% endblock %}</title>
     {% block extra_head %}
     {% endblock %}
   </head>
-  <body>
+  <body class="app">
     {% block body %}
 
     {% if messages %}
@@ -31,8 +39,14 @@
         {% endif %}
       </ul>
     </div>
-    {% block content %}
-    {% endblock %}
+    <div class="app-body">
+        <main class="main">
+            <div class="container{% if non_fluid %}{% else %}-fluid{% endif %} my-4">
+              {% block content %}
+              {% endblock %}
+          </div>
+        </main>
+    </div>
     {% endblock %}
     {% block extra_body %}
     {% endblock %}
