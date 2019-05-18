@@ -7,12 +7,11 @@ from django import forms
 class OverrideLoginForm(allauth.account.forms.LoginForm):
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields["some-field"] = forms.CharField(label='Some label', max_length=100)
+        super(OverrideLoginForm, self).__init__(*args, **kwargs)
+        
         # Hide the label
         self.helper = FormHelper()
-        print(self.helper.form_show_labels)
         self.helper.form_show_labels = False
-        print(self.helper.form_show_labels)
+        self.fields['login'].label = False
         self.fields['password'].label = False
         

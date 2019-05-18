@@ -14,7 +14,7 @@
     {% endblock %}
   </head>
   <body class="app">
-    {% block body %}
+    {% block content %}
 
     {% if messages %}
     <div>
@@ -42,7 +42,7 @@
     <div class="app-body">
         <main class="main">
             <div class="container{% if non_fluid %}{% else %}-fluid{% endif %} my-4">
-              {% block content %}
+              {% block body %}
               {% endblock %}
           </div>
         </main>

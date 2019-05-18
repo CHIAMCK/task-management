@@ -6,6 +6,10 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const devMode = process.env.NODE_ENV !== 'production'
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
+// refer https://github.com/owais/django-webpack-loader
+// https://github.com/owais/webpack-bundle-tracker
+// https://getbootstrap.com/docs/4.0/getting-started/webpack/
+
 const output = {
   path: path.resolve(__dirname+'/static/bundles'),
   filename: `[name]${devMode ? '' : '-[hash]'}.js`,
