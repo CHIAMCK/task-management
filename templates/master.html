@@ -6,15 +6,15 @@
 <!-- specify the language of the content -->
 <html lang="en">
 <!-- a container for all the head elements, check documentation -->
-<head>
-    <!-- meta? -->
+    <head>
 
-    <!-- create a block that can be overriden by child templates -->
-    <!-- title on the browser tab -->
-    <title>{% block main_title %}Management-App{% endblock %}</title>
+        <!-- create a block that can be overriden by child templates -->
+        <!-- title on the browser tab -->
+        <title>{% block main_title %}Management-App{% endblock %}</title>
+        <meta charset="utf-8">
 
-    <!-- webpack bundles -->
-    {% block main_js %}
+        <!-- webpack bundles -->
+        {% block main_js %}
         {% render_bundle 'runtime' %}
         <!-- import all css files -->
         {% render_bundle 'main_css' %}
@@ -22,24 +22,42 @@
         {% render_bundle 'vendor' %}
         <!-- bundles that import all required javascript files -->
         {% render_bundle 'libs' %}
-    {% endblock %}    
-</head>
-<!-- class provided by coreui -->
-<body class="app header-fixed
-             sidebar-fixed
-             aside-menu-fixed
-             brand-minimized
-             sidebar-minimized">
+        {% endblock %}
+    </head>
+    <!-- class provided by coreui -->
+    <body class="app header-fixed sidebar-fixed aside-menu-fixed brand-minimized
+                sidebar-minimized">
 
-             <!-- header  -->
-             <!-- load other template in this tempalte -->
-             {% include 'dashboard/master_header.html' %}
+        <!-- header  -->
+        <!-- load other template in this tempalte -->
+        <!-- show header after the user is authenticated -->
+        {% if request.user.is_authenticated %}
+            {% include 'dashboard/master_header.html' %}
+        {% endif %}    
 
-             <div class="app-body">
-                 <!-- left side bar -->
-                 {% include 'dashboard/master_left_sidebar.html' %}
-             </div>
-
+        <div class="app-body">
+            <!-- left side bar -->
+            {% if request.user.is_authenticated %}
+                {% include 'dashboard/master_left_sidebar.html' %}
+            {% endif %}
+            <main class="main">
+                <!-- breadcrumbs -->
+                {% if request.user.is_authenticated %}
+                    <ol class="breadcrumb">
+                        {% block breadcrumbs %}{% include 'breadcrumbs/home.html' %}{%endblock%}
+                    </ol>
+                {% endif %}    
     
-</body>
+                <!-- main body -->
+                <div class="container{% if non_fluid %}{% else %}-fluid{% endif %} my-4">
+                    {% block main_content %}{% endblock %}
+                </div>
+    
+            </main>
+        </div>
+
+        {% block main_footer %}
+        {% include 'dashboard/master_footer.html' %}
+        {% endblock %}
+    </body>
 </html>

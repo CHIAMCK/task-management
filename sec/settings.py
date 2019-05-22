@@ -213,6 +213,9 @@ SOCIALACCOUNT_QUERY_EMAIL = True
 # other allauth setting
 ACCOUNT_ADAPTER = 'accounts.adapter.AccountAdapter'  # for allauth
 
+# allauth logout on get
+ACCOUNT_LOGOUT_ON_GET = False  # for allauth (Allauth no more supporting logout on get)
+
 # customize login and signup form, allauth
 ACCOUNT_FORMS = {
     'login': 'accounts.forms.OverrideLoginForm',

@@ -20,9 +20,6 @@
         <li class="nav-item px-3">
             <a class="nav-link" href="">{% trans 'Dashboard' %}</a>
         </li>
-        <li class="nav-item px-3">
-            <a class="nav-link" href="">{% trans 'Login' %}</a>
-        </li>
     </ul>
     <!-- bootstrap navigation bar with dropdown -->
     <ul class="nav navbar-nav ml-auto">
@@ -57,8 +54,8 @@
             </div>
         </li>
     </ul>
-
-    <form class="form-group" id="logout_form" method="POST" action="" style="display:none" novalidate="">
+    <!-- logout URL provided by django-allauth -->
+    <form class="form-group" id="logout_form" method="POST" action="{% url 'account_logout' %}" style="display:none" novalidate="">
         {% csrf_token %}
         {% if redirect_field_value %}
             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
