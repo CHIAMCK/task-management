@@ -21,6 +21,5 @@ import dashboard.views
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^accounts/', include('allauth.urls')), #for allauth
-    path('', dashboard.views.MainDashboardView.as_view(), name='home'),  # can change to anything
-
+    path('dashboard/', include('dashboard.urls')),
 ]
