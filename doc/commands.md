@@ -1,0 +1,15 @@
+# How to create virtualenv
+
+- mkvirtualenv projectx -p /usr/bin/python3.6
+
+- lsvirtualenv
+
+- rmvirtualenv <virtualenv_name>
+
+
+# How to create database
+- docker-compose exec db /bin/bash
+
+- mysql -h db -u root -p # the password refer to DATABASES in settings.py
+
+- mysql> create database your_database_name;

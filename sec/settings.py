@@ -13,9 +13,18 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+# /code
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# /code
 NEW_BASE_DIR = os.path.abspath(os.path.join(BASE_DIR))
+
+# The absolute path to the directory where collectstatic will collect
+# static files for deployment.
 STATIC_ROOT = os.path.join(NEW_BASE_DIR, 'static_r')
+
+# The file storage engine to use when collecting static files with the
+# collectstatic management command.
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 # Quick-start development settings - unsuitable for production
@@ -29,9 +38,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -49,10 +56,10 @@ INSTALLED_APPS = [
     'sec',
     'dashboard',
     'webpack_loader',
-    'compressor',
-
 ]
 
+# webpack loader
+# django-webpack-loader
 WEBPACK_LOADER = {
     'DEFAULT': {
         'BUNDLE_DIR_NAME': 'bundles/',
@@ -72,15 +79,16 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'sec.urls'
 
-CRISPY_TEMPLATE_PACK =  'bootstrap4'
-
 # custom template and project path
 SETTINGS_DIR = os.path.dirname(__file__)
 PROJECT_PATH = os.path.join(SETTINGS_DIR, os.pardir)
 PROJECT_PATH = os.path.abspath(PROJECT_PATH)
 
 ROOT_PROJECT_NAME = ''
-TEMPLATE_PATH = os.path.join(NEW_BASE_DIR, ROOT_PROJECT_NAME, 'templates',)  # root/master template path
+
+# master template path
+TEMPLATE_PATH = os.path.join(NEW_BASE_DIR, ROOT_PROJECT_NAME, 'templates',)
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -101,6 +109,7 @@ TEMPLATES = [
     },
 ]
 
+# authentication setting
 AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
@@ -111,21 +120,19 @@ AUTHENTICATION_BACKENDS = (
 
 WSGI_APPLICATION = 'sec.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'sec_db',
+        'NAME': 'task_management',
         'USER': 'root',
         'PASSWORD': 'abc',
         'HOST': 'db',
         'PORT': '3306',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -144,7 +151,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
@@ -165,35 +171,21 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# This setting defines the additional locations the staticfiles app
+# will traverse if the FileSystemFinder finder is enabled
 STATICFILES_DIRS = [
     os.path.join(NEW_BASE_DIR, 'static'),
-    # os.path.join(NEW_BASE_DIR, 'static_media'),
 ]
 
+# The list of finder backends that know how to find static files
+# in various locations.
 STATICFILES_FINDERS = [
+    # The default will find files stored in the STATICFILES_DIRS setting
     'django.contrib.staticfiles.finders.FileSystemFinder',
+    # static subdirectory of each app
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'compressor.finders.CompressorFinder',
 ]
-
-# Compressor and Minify
-COMPRESS_ROOT = STATIC_ROOT
-COMPRESS_URL = STATIC_URL
-COMPRESS_STORAGE = STATICFILES_STORAGE
-COMPRESS_ENABLED = False  # True|False - True
-COMPRESS_OFFLINE = False  # True|False - might consider as False
-
-COMPRESS_CSS_FILTERS = [
-    'compressor.filters.css_default.CssAbsoluteFilter',
-    'compressor.filters.cssmin.rCSSMinFilter',
-]
-COMPRESS_JS_FILTERS = [
-    'compressor.filters.jsmin.JSMinFilter',
-]
-# COMPRESS_OUTPUT_DIR = 'compressed'
-HTML_MINIFY = True
-KEEP_COMMENTS_ON_MINIFYING = False
-# END Compressor and Minify
 
 # allauth settings
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
@@ -219,5 +211,4 @@ ACCOUNT_LOGOUT_ON_GET = False  # for allauth (Allauth no more supporting logout 
 # customize login and signup form, allauth
 ACCOUNT_FORMS = {
     'login': 'accounts.forms.OverrideLoginForm',
-
-}  # for allauth
+}

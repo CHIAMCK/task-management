@@ -4,12 +4,14 @@ var BundleTracker = require('webpack-bundle-tracker');
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const devMode = process.env.NODE_ENV !== 'production'
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 // refer https://github.com/owais/django-webpack-loader
 // https://github.com/owais/webpack-bundle-tracker
 // https://getbootstrap.com/docs/4.0/getting-started/webpack/
+// https://medium.com/a-beginners-guide-for-webpack-2/webpack-loaders-css-and-sass-2cc0079b5b3a
 
+
+// where to emit the bundles it creates and how to name these files
 const output = {
   path: path.resolve(__dirname+'/static/bundles'),
   filename: `[name]${devMode ? '' : '-[hash]'}.js`,
@@ -20,6 +22,7 @@ const output = {
 module.exports = {
   context: __dirname,
   mode: devMode ? 'development' : 'production',
+  // indicates which module webpack should use to begin out its internal dependency graph
   entry: {
     main_css: './static/js/css',
     libs: './static/js/main'
@@ -41,6 +44,7 @@ module.exports = {
     }
   },
   output,
+  // perform a wider range of tasks like bundle optimization ...
   plugins: [
     // new BundleAnalyzerPlugin({
     //   analyzerMode: 'static'
@@ -57,10 +61,14 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: devMode ? '[name].css' : '[name].[hash].css',
       chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
-    }),
-    new VueLoaderPlugin()
+    })
   ],
   module: {
+    // loaders are transformation that are applied to the source code of a module
+
+    // Webpack by itself only knows javascript, so when we want it to pack any
+    // other type of resources like .css or .scss or .ts, webpack needs help
+    // in order to compile and bundle those non-javascript types of resources.
     rules: [
       {
         test: /\.js$/,
@@ -103,7 +111,10 @@ module.exports = {
     ]
   },
   resolve: {
+    // Automatically resolve certain extensions. enables users to leave off
+    // the extension when importing:
     extensions: ['*', '.js', '.scss', '.vue'],
+    // Create aliases to import or require certain modules more easily.
     alias: {
       static: path.resolve(__dirname, 'static')
     }
