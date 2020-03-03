@@ -16,10 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
-import dashboard.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^accounts/', include('allauth.urls')), #for allauth
+    url(r'^accounts/', include('allauth.urls')),
     path('dashboard/', include('dashboard.urls')),
+    path('team_member/', include('team_member.urls')),
 ]

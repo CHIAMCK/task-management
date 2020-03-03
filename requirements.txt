@@ -1,5 +1,6 @@
 django-allauth==0.37.0
 django-extensions==2.1.2
-Werkzeug
+Werkzeug==0.16.0
 django-crispy-forms==1.7.2
 django-webpack-loader
+Django==2.1.5

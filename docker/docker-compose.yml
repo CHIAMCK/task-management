@@ -7,26 +7,26 @@ services:
     volumes:
       - '..:/code'
     restart: on-failure
-    environment: 
+    environment:
       - DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE}
       - STATIC_ROOT=${STATIC_ROOT}
     links:
       - db
     command: 'python manage.py runserver_plus 0.0.0.0:8000'
-    ports: 
+    ports:
       - '${DJANGO_PORT}:8000'
 
-  db: 
+  db:
     image: 'mariadb:10.3'
     volumes:
-      - db_data:/var/lib/mysql 
+      - db_data:/var/lib/mysql
     expose:
       - '3306'
     ports:
       - '3306:3306'
-    environment: 
+    environment:
       - MYSQL_ROOT_PASSWORD=abc
-      - MYSQL_DATABASE=sec_db
+      - MYSQL_DATABASE=task_db
 
 volumes:
   db_data:
