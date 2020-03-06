@@ -42,3 +42,27 @@ class SubmitButtons(SubmitButtonsGroup):
         ]
 
         super().__init__(*buttons, css_class=css_class, button_css_classes=button_css_classes)
+
+
+class EditSubmitButtons(SubmitButtonsGroup):
+
+    def __init__(self, delete=True):
+        css_class = 'btn white'
+        button_css_classes = {
+            'save': 'btn-success',
+            'save_edit': '',
+            'delete': 'btn-danger'
+        }
+
+        buttons = [('save', 'Save'), ('save_edit', 'Save and edit')]
+
+        if delete:
+            buttons.append(('delete', 'Delete'))
+
+        buttons.append(('submit_cancel', 'Cancel'))
+
+        super().__init__(
+            *buttons,
+            css_class=css_class,
+            button_css_classes=button_css_classes
+        )

@@ -4,3 +4,4 @@ Werkzeug==0.16.0
 django-crispy-forms==1.7.2
 django-webpack-loader
 Django==2.1.5
+django-tables2==2.0.3

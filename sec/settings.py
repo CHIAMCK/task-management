@@ -57,7 +57,8 @@ INSTALLED_APPS = [
     'dashboard',
     'webpack_loader',
     'company',
-    'team_member'
+    'team_member',
+    'django_tables2'
 ]
 
 # webpack loader

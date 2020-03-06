@@ -1,7 +1,12 @@
 from django.db import models
 
+from utils.models import SoftDeleteModel
+from .manager import Manager
 
-class TeamMember(models.Model):
+
+class TeamMember(SoftDeleteModel, models.Model):
+
+    objects = Manager()
 
     user = models.OneToOneField(
         to='auth.User',

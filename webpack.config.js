@@ -25,7 +25,8 @@ module.exports = {
   // indicates which module webpack should use to begin out its internal dependency graph
   entry: {
     main_css: './static/js/css',
-    libs: './static/js/main'
+    libs: './static/js/main',
+    team_member_edit: './team_member/static/js/task_edit'
   },
   optimization: {
     runtimeChunk: "single",

@@ -4,6 +4,11 @@
 
 {% load render_bundle from webpack_loader %}
 
+{% block main_js %}
+{{block.super}}
+{% render_bundle 'team_member_edit' %}
+{% endblock %}
+
 {% block main_content %}
     <div class="sh-container-fluid">
         <div class="animated fadeIn">
@@ -14,4 +19,7 @@
             </div>
         </div>
     </div>
+    {% include 'team_member/confirm_delete.html' %}
 {% endblock %}
+
+

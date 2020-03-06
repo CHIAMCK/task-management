@@ -1,8 +1,8 @@
 from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import UpdateView
 
 from ..models import TeamMember
-from ..forms import AddTeamMemberForm
+from ..forms import EditTeamMemberForm
 from utils.views.forms import PassRequestToFormView
 
 # using createview
@@ -10,8 +10,8 @@ from utils.views.forms import PassRequestToFormView
 # create route
 
 
-class AddTeamMemberView(PassRequestToFormView, CreateView):
+class EditTeamMemberView(PassRequestToFormView, UpdateView):
     model = TeamMember
-    form_class = AddTeamMemberForm
-    template_name = 'team_member_form.html'
+    form_class = EditTeamMemberForm
+    template_name = 'team_member_edit.html'
     success_url = reverse_lazy('team_members:list')
