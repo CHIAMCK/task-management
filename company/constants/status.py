@@ -1,0 +1,18 @@
+
+ACTIVE = 'Active'
+INACTIVE = 'Inactive'
+
+ACTIVE_INT = 1
+INACTIVE_INT = 2
+
+STATUS = [
+    ACTIVE,
+    INACTIVE
+]
+
+STATUS_INT = [
+    ACTIVE_INT,
+    INACTIVE_INT
+]
+
+STATUS_OPTIONS = tuple(zip(STATUS_INT, STATUS))

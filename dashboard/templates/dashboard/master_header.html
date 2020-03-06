@@ -18,13 +18,13 @@
     <ul class="nav navbar-nav d-md-down-none">
         <!-- padding left and right -->
         <li class="nav-item px-3">
-            <a class="nav-link" href="">{% trans 'Dashboard' %}</a>
+            <a class="nav-link" href="">Dashboard</a>
         </li>
     </ul>
     <!-- bootstrap navigation bar with dropdown -->
     <ul class="nav navbar-nav ml-auto">
         <div>
-          <span>{% trans 'Welcome' %}</span>
+          <span>Welcome, {{ request.user }}</span>
         </div>
         <li class="nav-item dropdown">
             <!-- bootstrap dropdown -->

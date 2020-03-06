@@ -56,6 +56,9 @@ INSTALLED_APPS = [
     'sec',
     'dashboard',
     'webpack_loader',
+    'company',
+    'team_member',
+    'django_tables2'
 ]
 
 # webpack loader
@@ -78,6 +81,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'sec.urls'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # custom template and project path
 SETTINGS_DIR = os.path.dirname(__file__)
@@ -184,7 +189,6 @@ STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     # static subdirectory of each app
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder',
 ]
 
 # allauth settings
