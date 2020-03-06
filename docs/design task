@@ -1,0 +1,78 @@
+
+brief intro:
+- build a system where user can create tasks and assign them to other team members
+- target user: companies
+
+
+Requirements
+
+1. admin can create team team_member
+when a team member is created, an auth user is created also
+
+2. task is assigned to team member
+
+
+steps:
+1. create model for company, can create company using admin page
+2. create model for team member, can list, add, delete, update team member
+
+
+user
+PK  id: int
+    name: varchar(255)
+    email: varchar()
+    is_active: BOOLEAN
+    date_joined: datetime
+    last_login: datetime
+
+
+task
+PK  id: int
+    title: varchar()
+    description: varchar()
+    status: enum('New', 'In progress', 'Pending', 'Completed')
+
+    due_date: datetime
+    created_date: datetime
+    updated_date: datetime
+    deleted_date: datetime
+
+    organization: organization id
+
+FK  assigned_to: team_member id
+FK  created_by: team_member id
+FK  updated_by: team_member id
+FK  updated_by: team_member id
+
+
+company
+PK  id: int
+    name: varchar()
+    email: varchar()
+    status: enum('Active', 'Inactive')
+
+
+team_member
+PK/FK   user: user id
+        name: varchar()
+        email: varchar()
+        deleted_date: datetime
+FK      company_id: company id
+
+
+
+####
+account
+PK/FK   id: user id
+        name: varchar
+FK      organization_id: organization id
+###
+
+
+common query:
+1. return all tasks of an organization
+2. return all tasks assigned to a user
+3. return tasks based on status
+4.
+
+

@@ -1,9 +1,9 @@
 
-ACTIVE='Active'
-INACTIVE='Inactive'
+ACTIVE = 'Active'
+INACTIVE = 'Inactive'
 
-ACTIVE_INT=1
-INACTIVE_INT=2
+ACTIVE_INT = 1
+INACTIVE_INT = 2
 
 STATUS = [
     ACTIVE,

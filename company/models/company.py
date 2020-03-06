@@ -1,5 +1,7 @@
 from django.db import models
+
 from ..constants import status
+
 
 class Company(models.Model):
 

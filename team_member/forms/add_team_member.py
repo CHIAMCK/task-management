@@ -1,7 +1,9 @@
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Div, Layout
 from django import forms
 from django.contrib.auth.models import User
+
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Div, Layout
+
 
 from utils.forms.layout import FormCard, SubmitButtons
 

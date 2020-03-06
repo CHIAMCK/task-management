@@ -1,6 +1,7 @@
+from django import forms
+
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Div, Layout
-from django import forms
 
 from utils.forms.layout import FormCard, EditSubmitButtons
 
