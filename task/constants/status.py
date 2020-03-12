@@ -1,0 +1,26 @@
+
+NEW = 'New'
+IN_PROGRESS = 'In progress'
+PENDING = 'Pending'
+COMPLETED = 'Completed'
+
+NEW_INT = 1
+IN_PROGRESS_INT = 2
+PENDING_INT = 3
+COMPLETED_INT = 4
+
+STATUS = [
+    NEW,
+    IN_PROGRESS,
+    PENDING,
+    COMPLETED
+]
+
+STATUS_INT = [
+    NEW_INT,
+    IN_PROGRESS_INT,
+    PENDING_INT,
+    COMPLETED_INT
+]
+
+STATUS_OPTIONS = tuple(zip(STATUS_INT, STATUS))

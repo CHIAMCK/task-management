@@ -15,8 +15,10 @@ class TeamMemberTable(tables.Table):
     )
 
     email = tables.Column(
-        'Email', orderable=False
+        'Phone', orderable=False
     )
+
+
 
     class Meta():
         model = TeamMember

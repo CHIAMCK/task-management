@@ -1,0 +1,21 @@
+{% extends 'django_tables2/bootstrap4.html' %}
+{% block table.thead %}
+{% load django_tables2 %}
+{% if table.show_header %}
+    <thead class="thead-default" {{ table.attrs.thead.as_html }}>
+    <tr>
+    {% for column in table.columns %}
+        <th {{ column.attrs.th.as_html }}>
+            {{ column.header }}
+            {% if column.orderable %}
+              <a class="sort_link {% if not column.is_ordered %}plain{%endif%} {% if column.order_by_alias.is_descending %}descending{%endif%}"
+                href="{% querystring table.prefixed_order_by_field=column.order_by_alias.next %}">
+                <span class="material-icons align-middle">sort</span>
+              </a>
+            {% endif %}
+        </th>
+    {% endfor %}
+    </tr>
+    </thead>
+{% endif %}
+{% endblock table.thead %}

@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'django_extensions',
+    'django_tables2',
     'crispy_forms',
     'accounts',
     'sec',
@@ -58,7 +59,7 @@ INSTALLED_APPS = [
     'webpack_loader',
     'company',
     'team_member',
-    'django_tables2'
+    'task'
 ]
 
 # webpack loader
@@ -79,6 +80,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+DJANGO_TABLES2_TEMPLATE = 'tables/table.html'
 
 ROOT_URLCONF = 'sec.urls'
 

@@ -20,3 +20,11 @@ How to exclude soft deleted records?
 1. override the get_queryset() of view, add a filter something like date_deleted__isnull=True
     if we override it at view, objetcs.all() will still return all. This is not efficient
     We can actually exclude it at the beginning at model level. override get_queryset() in model Manager
+
+how to auto fill certain fields?
+1. modelForm save()
+self.form.created_by = self.request.user
+
+
+How to add datepicker? l
+use daterangepicker library
