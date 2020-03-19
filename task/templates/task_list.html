@@ -1,6 +1,5 @@
 {% extends "master.html" %}
 {% load render_table from django_tables2 %}
-{% load render_bundle from webpack_loader %}
 
 {% block main_css %}
 {{block.super}}
@@ -9,6 +8,7 @@
 {% block main_js %}
   {{block.super}}
 {% endblock main_js %}
+
 
 {% block main_content %}
 <div class="card">

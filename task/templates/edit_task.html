@@ -1,0 +1,27 @@
+{% extends "master.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+
+{% load render_bundle from webpack_loader %}
+
+{% block main_css %}
+{% endblock %}
+
+{% block main_js %}
+{{block.super}}
+{% render_bundle 'task_add' %}
+{% endblock %}
+
+{% block main_content %}
+    <div class="sh-container-fluid">
+        <div class="animated fadeIn">
+            <div class="row">
+                <div class="col text-left">
+                    {% crispy form %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include 'task/confirm_delete_modal.html' %}
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'master_modal.html' %}
+{% block modal_title %}Delete{% endblock %}
+{% block modal_body_content %}<p>Are you sure you want to delete task <em>{{object.title}}</em>?</p>{% endblock %}
+{% block modal_footer_content %}
+<form action="{% url 'tasks:delete' object.pk %}" id="confirmation-modal" method="post">
+    {% csrf_token %}
+    <button type="submit" value="delete" class="btn btn-danger">Confirm</button>
+</form>
+{% endblock %}

@@ -37,12 +37,12 @@ PK  id: int
     updated_date: datetime
     deleted_date: datetime
 
-    organization: organization id
+FK  company_id: company id
 
 FK  assigned_to: team_member id
 FK  created_by: team_member id
 FK  updated_by: team_member id
-FK  updated_by: team_member id
+FK  deleted_by: team_member id
 
 
 company

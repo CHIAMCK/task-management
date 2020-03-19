@@ -18,7 +18,8 @@ class SubmitButtonsGroup(ButtonHolder):
                 if button[0] != 'submit_cancel' else
                 Button(
                     button[0], button[1],
-                    css_class=button_css_classes.get('submit_cancel', 'btn-link')
+                    css_class=button_css_classes.get('submit_cancel', 'btn-link'),
+                    onclick='window.history.back()'
                 )
                 for button in buttons
             ]
@@ -30,14 +31,12 @@ class SubmitButtons(SubmitButtonsGroup):
 
         button_css_classes = {
             'save': 'btn-success',
-            'save_add': '',
-            'save_edit': ''
         }
 
         css_class = 'btn white'
 
         buttons = [
-            ('save', 'Save'), ('save_add', 'Save and add'),
+            ('save', 'Save'),
             ('submit_cancel', 'Cancel')
         ]
 
@@ -50,11 +49,10 @@ class EditSubmitButtons(SubmitButtonsGroup):
         css_class = 'btn white'
         button_css_classes = {
             'save': 'btn-success',
-            'save_edit': '',
             'delete': 'btn-danger'
         }
 
-        buttons = [('save', 'Save'), ('save_edit', 'Save and edit')]
+        buttons = [('save', 'Save')]
 
         if delete:
             buttons.append(('delete', 'Delete'))

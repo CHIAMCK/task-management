@@ -23,7 +23,8 @@
     "popper.js": "^1.14.4",
     "sweetalert2": "^8.0.1",
     "vue": "^2.5.21",
-    "perfect-scrollbar": "^1.4.0"
+    "perfect-scrollbar": "^1.4.0",
+    "daterangepicker": "^3.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.0.1",

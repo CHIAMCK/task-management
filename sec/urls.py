@@ -25,4 +25,5 @@ urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
     path('dashboard/', include('dashboard.urls')),
     path('team_member/', include('team_member.urls')),
+    path('task/', include('task.urls')),
 ]
