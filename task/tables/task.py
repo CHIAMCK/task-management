@@ -4,8 +4,13 @@ from ..models import Task
 
 
 class TaskTable(tables.Table):
-    title = tables.Column(
-        'Ttile', orderable=False
+    title = tables.TemplateColumn(
+        '''
+        <a href="{% url 'tasks:edit' record.pk %}">
+            {{record.title}}
+        </a>
+        ''',
+        orderable=False
     )
 
     status = tables.Column(
