@@ -13,7 +13,7 @@ How to add modal to django template?
 How to use django table 2?
 1. use SingleTableMixin, to incorporate a table into a view or template
 2. create table class
-3. use the django table 2 template tag to render the table
+3. use the django table 2 template tag to render the table, {% render_table table %}
 
 
 How to exclude soft deleted records?
@@ -36,10 +36,15 @@ How to add modal?
 3. include it in the template
 4. use jquery to open the modal
 
-
 How to customized success url based on which button is pressed?
 1. there is a method caled get_success_url() that will determine the success url
 2. we can override this method and check the request.
 3. when the button is pressed, it will pass the name and value of input field in the request
 4. check which button is pressed and based on that decide the url
 
+How to add filter to table?
+1. use django filter
+2. use the Filterview (provide model and filterset_class)
+3. use filterset, generate filter based on model's fields
+4. wrap the card inside a form
+5. add the input for filter in the template, filter.form.<field_name>

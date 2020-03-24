@@ -1,0 +1,24 @@
+<!-- a container to enhance an input by adding an icon, -->
+<!-- text or a button in front or behind the input field as a "help text". -->
+<div class="input-group">
+    <!-- to add the help text in front of the input -->
+    <span class="input-group-prepend">
+    <!-- create icon button -->
+        <button class="btn btn-info" type="button">
+            <i class="material-icons align-middle">search</i>
+        </button>
+    </span>
+    <!-- form-control class, have a width of 100%. -->
+    <!-- form-control-lg, large size input field -->
+    <!-- use BoundField to access attributes for a single field of a Form instance -->
+    <input class="form-control form-control-lg" value="{{field.value|default_if_none:""}}" id="{{ field.id_for_label }}"
+        data-toggle="search-bar-input"
+        type="text" name="{{ field.html_name }}" placeholder="{{ placeholder }}">
+    <!-- add help text behind the input. -->
+    <span class="input-group-append">
+        <!-- if there is value in the filter input, make it yellow -->
+        <button data-toggle="button-search" class="btn btn-white {% if field.value %}btn-warning"{% else %}btn-dark" disabled="disabled"{% endif %} type="button" data-clear-on-click="#{{ field.id_for_label }}">
+            <i class="material-icons align-middle">clear</i>
+        </button>
+    </span>
+</div>
