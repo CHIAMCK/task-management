@@ -1,5 +1,8 @@
 {% extends "master.html" %}
+{% load django_tables2 %}
 {% load render_table from django_tables2 %}
+
+{% load render_bundle from webpack_loader %}
 
 {% block main_css %}
 {{block.super}}
@@ -7,13 +10,28 @@
 
 {% block main_js %}
   {{block.super}}
+  {% render_bundle 'task_list' %}
 {% endblock main_js %}
 
-
 {% block main_content %}
-<div class="card">
+<form method="GET" action="{% querystring %}" id="table_form">
+  <div class="card">
+    <div class="card-header">
+      <div class="row align-items-center">
+        <div class="col">
+          {% include 'lists/search_bar.html' with field=filter.form.title placeholder='Search by task name' %}
+        </div>
+        <div class="col-2">
+            {{ filter.form.status }}
+          </div>
+        <div class="col-1">
+          {%include 'lists/add_button.html' with reverse_url='tasks:add' title='Create a new task' %}
+        </div>
+      </div>
+    </div>
     <div class="card-body">
         {% render_table table %}
     </div>
-</div>
+  </div>
+</form>
 {% endblock %}

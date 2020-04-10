@@ -4,13 +4,19 @@ from ..models import Task
 
 
 class TaskTable(tables.Table):
+    task_number = tables.TemplateColumn(
+        'Task number',
+        orderable=False
+    )
+
     title = tables.TemplateColumn(
         '''
         <a href="{% url 'tasks:edit' record.pk %}">
             {{record.title}}
         </a>
         ''',
-        orderable=False
+        orderable=False,
+        attrs={'th': {'width': '400'}}
     )
 
     status = tables.Column(
@@ -21,7 +27,7 @@ class TaskTable(tables.Table):
         'Assigned to', orderable=False
     )
 
-    created_on = tables.Column(
+    created_date = tables.Column(
         'Created on', orderable=False
     )
 
@@ -31,5 +37,5 @@ class TaskTable(tables.Table):
         # add custom HTML attributes to the table
         attrs = {'class': 'table table-striped table-responsive-sm'}
         fields = (
-            'title', 'status', 'assigned_to', 'created_on'
+            'task_number', 'title', 'status', 'assigned_to', 'created_date'
         )
