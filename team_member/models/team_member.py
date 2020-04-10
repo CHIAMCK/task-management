@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 from utils.models import SoftDeleteModel
@@ -32,3 +33,20 @@ class TeamMember(SoftDeleteModel, models.Model):
         related_name='+',
         null=True
     )
+
+    def save(self, *args, **kwargs):
+        # TODO generate random password
+        default_password = 'Abcd123!'
+
+        # create user
+        # TODO send verfication email and reset password
+        user = User.objects.create_user(
+            username=self.name,
+            email=self.email,
+            password=default_password
+        )
+
+        # add user id to the team member instance
+        self.user_id = user.id
+
+        return super().save(*args, **kwargs)

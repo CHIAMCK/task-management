@@ -45,6 +45,23 @@ How to customized success url based on which button is pressed?
 How to add filter to table?
 1. use django filter
 2. use the Filterview (provide model and filterset_class)
-3. use filterset, generate filter based on model's fields
+3. use filterset to create filter, generate filter based on model's fields,
+there are many filters we can choose exp: CharFilter, BooleanFilter, ChoiceFilter ...
 4. wrap the card inside a form
 5. add the input for filter in the template, filter.form.<field_name>
+
+
+
+How to create custom django command?
+1. create folder management/command/<your_file>
+2. can pass arguments when you run the command, example: ./manage.py cleanup_data --days=30 --commit
+3. don't use print() in script, use  ---> self.stdout.write(self.style.SUCCESS("Getting User"))
+4. can check the execution time, example
+   def some_method:
+        start_time = time.time()
+        self.stdout.write(self.style.WARNING("--- %s seconds ---\n" % (time.time() - start_time)))
+5. can start a SQL transaction, @transaction.atomic, which allows user to dry run (run without committing changes to DB) the script.
+
+How to delete file in FileField?
+1. call the delete() of the FileField instance, example: instance.document.delete(False), False means that don't save the instance
+2. can use with post_delete signal to delete the instance and the file associates with it

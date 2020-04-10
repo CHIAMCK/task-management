@@ -27,7 +27,8 @@ module.exports = {
     main_css: './static/js/css',
     libs: './static/js/main',
     team_member_edit: './team_member/static/js/team_member_edit',
-    task_add: './task/static/js/task_add'
+    task_add: './task/static/js/task_add',
+    task_list: './task/static/js/task_list'
   },
   optimization: {
     runtimeChunk: "single",

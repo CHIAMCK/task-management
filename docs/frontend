@@ -1,8 +1,38 @@
 
+boostrap
 
 modal
-input-group
-grid boostrap
-form
+
+icon link
+- put the icon inside the link, example: <a><i></i></a>
+
+.input-group class --> class is a container to enhance an input by adding an icon,
+text or a button in front or behind the input field as a "help text".
+
+grid
+
 card
+
+form
+- form-control --> css class for <input>, <select>, <textarea>
+- <select> --> dropdown picker
+
+button styles
+- btn-danger
+- btn-warning
+
+jquery
+
+selectors:
+- select by id
+- select by attribute
+
+
+events:
+- ready() - A function to execute after the DOM is ready.
+- change() - is triggered when the input value changes, <input>, <textarea>, <select>
+- attr() - get the attribute value of an element
+- val() - get, set the value of form element, input, textarea, select
+- click()
+- submit()
 

@@ -1,0 +1,8 @@
+
+assertTrue()
+
+use create() to create a test instance
+
+How to test form?
+- add data (dict) to the form class using the data keyword argument
+- test whether the from data is valid by calling is_valid()

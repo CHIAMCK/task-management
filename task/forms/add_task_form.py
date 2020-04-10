@@ -46,7 +46,6 @@ class AddTaskForm(forms.ModelForm):
         # get the instance, set the value, instance.created_by_id = self.request.user.pk
 
         instance = super().save(commit=False)
-        print(instance)
         instance.company_id = self.request.user.team_member.company_id
         instance.created_by_id = self.request.user.pk
         instance.updated_by_id = self.request.user.pk
