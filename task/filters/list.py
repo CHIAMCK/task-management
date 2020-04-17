@@ -1,7 +1,7 @@
 import django_filters
 
-from ..models import Task
 from ..constants.status import STATUS_OPTIONS
+from ..models import Task
 
 
 class TaskFilter(django_filters.FilterSet):

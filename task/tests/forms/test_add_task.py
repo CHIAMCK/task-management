@@ -1,8 +1,9 @@
-from django.test import TestCase, RequestFactory
+from django.contrib.auth import get_user_model
+from django.test import RequestFactory, TestCase
+
+from company.models import Company
 from task.forms import AddTaskForm
 from team_member.models import TeamMember
-from company.models import Company
-from django.contrib.auth import get_user_model
 
 User = get_user_model()
 

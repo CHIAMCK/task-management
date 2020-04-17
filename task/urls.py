@@ -8,5 +8,6 @@ urlpatterns = [
     path('add', task.views.AddTaskView.as_view(), name='add'),
     path('list', task.views.ListTaskView.as_view(), name='list'),
     path('edit/<int:pk>', task.views.EditTaskView.as_view(), name='edit'),
-    path('delete/<int:pk>', task.views.DeleteTaskView.as_view(), name='delete')
+    path('delete/<int:pk>', task.views.DeleteTaskView.as_view(), name='delete'),
+    path('add_task_activity_form/<int:pk>', task.views.TaskActivityView.as_view(), name='task_activity'),
 ]

@@ -44,6 +44,30 @@ FK  created_by: team_member id
 FK  updated_by: team_member id
 FK  deleted_by: team_member id
 
+- add comment
+- add attachment
+- change status
+
+task activity
+PK  id: int
+FK  task: int
+    note: Text
+    activity_type: enum('COMMENT', 'ADD_ATTACHMENT', 'CHANGE_STATUS')
+FK  user: int
+    created_date: datetime
+    details: varchar()
+
+task attachment
+PK  id: int
+    file: varchar()
+FK  task_activity: int
+    created_date: datetime
+
+task activity status
+PK/FK   task_activity: int
+        status_before: smallint
+        status_after: smallint
+        created_date: datetime
 
 company
 PK  id: int
