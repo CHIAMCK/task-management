@@ -179,6 +179,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
 # This setting defines the additional locations the staticfiles app
 # will traverse if the FileSystemFinder finder is enabled
 STATICFILES_DIRS = [
@@ -193,6 +196,11 @@ STATICFILES_FINDERS = [
     # static subdirectory of each app
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 ]
+
+# Default file storage class to be used for any file-related operations
+# that don’t specify a particular storage system
+DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+
 
 # allauth settings
 # https://django-allauth.readthedocs.io/en/latest/configuration.html

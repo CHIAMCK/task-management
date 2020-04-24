@@ -73,4 +73,15 @@ How to render form on modal?
 1. user clicks on button, triggers the click() event
 2. the click() event send async AJAX request to backend to get the form html file
 3. when we receive response, render the form on modal body
-4. to get django url and use it in javascript, add the django URL to the window object in the template (after the template is rendered, it will become normal URL)
+4. to get django url and use it in javascript, add the django URL to the window object in the template, {% url %} (after the template is rendered, it will become normal URL)
+
+How to submit form using jquery?
+1. override submit behavior of the modal form
+2. send POST request using ajax
+3. get the form data using FormData(form)
+4. get the URL from the form action
+5. override get_form_class to return form that will be processed based on activity_type
+6. create save() for each form class
+7. call the save() of form at form_valid()
+8.
+

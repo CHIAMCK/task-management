@@ -18,7 +18,7 @@ class TaskActivityStatus(models.Model):
     )
 
     status_after = models.SmallIntegerField(
-        choice=status.STATUS_OPTIONS,
+        choices=status.STATUS_OPTIONS,
         db_index=True
     )
 

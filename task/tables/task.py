@@ -38,7 +38,13 @@ class TaskTable(tables.Table):
            data-target="#add-task-activity-modal"
            id="add-task-activity-button"
         >
-        <i style="color:#3BF944; font-size: 55px; width: 55px" class="material-icons align-middle">add_circle</i>
+            <i  data-task-id= {{ record.pk }}
+                style="color:#3BF944;
+                font-size: 55px;
+                width: 55px"
+                class="material-icons align-middle">
+                add_circle
+            </i>
         </a>
         ''',
         orderable=False

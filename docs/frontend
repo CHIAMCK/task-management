@@ -1,6 +1,9 @@
 
 boostrap
 
+alert
+-
+
 nav-tabs
 -
 
@@ -43,7 +46,12 @@ events:
 - submit()
 - html() - set the html content
 - $.ajax() - send aysnc ajax request, can be POST or GET
+- delegate() - Attach a handler to one or more events for all elements that match the selector,
+now or in the future, based on a specific set of root elements.
+- preventDefault()
 
+
+- eventObject.target - Returns the element that triggered the event
 
 html:
 <input> accept attribute - specify what file types the user can pick from the file input
@@ -52,4 +60,5 @@ example:
 <input type="file" id="img" name="img" accept="image/*">
 
 
-
+FormData() - create an object that represents HTML form data and submit it using fetch or
+$ajax(), need to have processData: false, contentType: false
