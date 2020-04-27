@@ -1,7 +1,15 @@
 
 boostrap
 
+alert
+-
+
+nav-tabs
+-
+
 modal
+- refer to boostrap, 2 ways to trigger it (boostrap, jquery)
+
 
 icon link
 - put the icon inside the link, example: <a><i></i></a>
@@ -10,8 +18,10 @@ icon link
 text or a button in front or behind the input field as a "help text".
 
 grid
+-
 
 card
+-
 
 form
 - form-control --> css class for <input>, <select>, <textarea>
@@ -21,12 +31,11 @@ button styles
 - btn-danger
 - btn-warning
 
-jquery
+jquery:
 
 selectors:
-- select by id
-- select by attribute
-
+- select by id, $("#lastname")
+- select by attribute, $("[href]")
 
 events:
 - ready() - A function to execute after the DOM is ready.
@@ -35,4 +44,22 @@ events:
 - val() - get, set the value of form element, input, textarea, select
 - click()
 - submit()
+- html() - set the html content
+- $.ajax() - send aysnc ajax request, can be POST or GET
+- delegate() - Attach a handler to one or more events for all elements that match the selector,
+now or in the future, based on a specific set of root elements.
+- preventDefault()
+- load() - Load data from the server and place the returned HTML into the matched elements.
 
+
+- eventObject.target - Returns the element that triggered the event
+
+html:
+<input> accept attribute - specify what file types the user can pick from the file input
+dialog box, can only be used with <input type="file">
+example:
+<input type="file" id="img" name="img" accept="image/*">
+
+
+FormData() - create an object that represents HTML form data and submit it using fetch or
+$ajax(), need to have processData: false, contentType: false

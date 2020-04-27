@@ -33,7 +33,7 @@
         <!-- show header after the user is authenticated -->
         {% if request.user.is_authenticated %}
             {% include 'dashboard/master_header.html' %}
-        {% endif %}    
+        {% endif %}
 
         <div class="app-body">
             <!-- left side bar -->
@@ -46,13 +46,14 @@
                     <ol class="breadcrumb">
                         {% block breadcrumbs %}{% include 'breadcrumbs/home.html' %}{%endblock%}
                     </ol>
-                {% endif %}    
-    
+                {% endif %}
+
                 <!-- main body -->
                 <div class="container{% if non_fluid %}{% else %}-fluid{% endif %} my-4">
+                    {% include 'master_message.html' %}
                     {% block main_content %}{% endblock %}
                 </div>
-    
+
             </main>
         </div>
 

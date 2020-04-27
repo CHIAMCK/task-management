@@ -1,0 +1,23 @@
+{% load crispy_forms_tags %}
+{% include 'master_message.html' %}
+<div>
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#comment" role="tab" aria-controls="nav-home" aria-selected="true">Add comment</a>
+            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#attachment" role="tab" aria-controls="nav-profile" aria-selected="false">Upload document</a>
+            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#status" role="tab" aria-controls="nav-contact" aria-selected="false">Update status</a>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="comment" role="tabpanel" aria-labelledby="nav-home-tab">
+            {% crispy forms.comment %}
+        </div>
+        <div class="tab-pane fade" id="attachment" role="attachment" aria-labelledby="nav-profile-tab">
+            {% crispy forms.attachment %}
+        </div>
+        <div class="tab-pane fade" id="status" role="update" aria-labelledby="nav-contact-tab">
+            {% crispy forms.status %}
+        </div>
+    </div>
+</div>
+

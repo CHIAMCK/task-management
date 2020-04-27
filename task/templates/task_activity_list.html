@@ -1,0 +1,28 @@
+{%if activities %}
+<div class="col" style="max-height:100%; overflow:auto">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">notes</th>
+                <th scope="col">created_date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for activity in activities %}
+            <tr>
+                <td>
+                    {{ activity.note }}
+                    {% for attachment in activity.attachments.all %}
+                        <br>
+                        <a href="{{attachment.file.url}}" target="_blank">{{attachment.file}}</a>
+                    {% endfor %}
+                </td>
+                <td>
+                    {{ activity.created_date }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}

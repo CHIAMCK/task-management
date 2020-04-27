@@ -20,3 +20,6 @@ webpack-stats.json
 
 # Django stuff(Logs):
 *.log
+
+# uploaded file
+media

@@ -14,7 +14,7 @@ How to use django table 2?
 1. use SingleTableMixin, to incorporate a table into a view or template
 2. create table class
 3. use the django table 2 template tag to render the table, {% render_table table %}
-
+4. There are few column type that you can use. for example, TemplateColumn ....
 
 How to exclude soft deleted records?
 1. override the get_queryset() of view, add a filter something like date_deleted__isnull=True
@@ -48,9 +48,7 @@ How to add filter to table?
 3. use filterset to create filter, generate filter based on model's fields,
 there are many filters we can choose exp: CharFilter, BooleanFilter, ChoiceFilter ...
 4. wrap the card inside a form
-5. add the input for filter in the template, filter.form.<field_name>
-
-
+5. add the input for filter in the template, filter.form.<field_name>, can change the UI of filter using the widget
 
 How to create custom django command?
 1. create folder management/command/<your_file>
@@ -65,3 +63,25 @@ How to create custom django command?
 How to delete file in FileField?
 1. call the delete() of the FileField instance, example: instance.document.delete(False), False means that don't save the instance
 2. can use with post_delete signal to delete the instance and the file associates with it
+
+How to filter queryset of relationship fields (ForeignKey, ManyToMany field)?
+1. can access the field instance in form class by self.fields['<field_name>']
+2. modifiy its queryset, self.fields['<field_name>'].queryset = ....
+
+
+How to render form on modal?
+1. user clicks on button, triggers the click() event
+2. the click() event send async AJAX request to backend to get the form html file
+3. when we receive response, render the form on modal body
+4. to get django url and use it in javascript, add the django URL to the window object in the template, {% url %} (after the template is rendered, it will become normal URL)
+
+How to submit form using jquery?
+1. override submit behavior of the modal form
+2. send POST request using ajax
+3. get the form data using FormData(form)
+4. get the URL from the form action
+5. override get_form_class to return form that will be processed based on activity_type
+6. create save() for each form class
+7. call the save() of form at form_valid()
+8.
+

@@ -31,11 +31,31 @@ class TaskTable(tables.Table):
         'Created on', orderable=False
     )
 
+    action = tables.TemplateColumn(
+        '''
+        <a href="#"
+           data-toggle="modal"
+           data-target="#add-task-activity-modal"
+           id="add-task-activity-button"
+        >
+            <i  data-task-id= {{ record.pk }}
+                style="color:#3BF944;
+                font-size: 55px;
+                width: 55px"
+                class="material-icons align-middle">
+                add_circle
+            </i>
+        </a>
+        ''',
+        orderable=False
+    )
+
     #  global settings for table
     class Meta():
         model = Task
         # add custom HTML attributes to the table
         attrs = {'class': 'table table-striped table-responsive-sm'}
         fields = (
-            'task_number', 'title', 'status', 'assigned_to', 'created_date'
+            'task_number', 'title', 'status', 'assigned_to', 'created_date',
+            'action'
         )
