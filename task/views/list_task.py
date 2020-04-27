@@ -1,5 +1,5 @@
 from django.contrib.messages.views import SuccessMessageMixin
-from django.views.generic.edit import FormView
+from django.views.generic import DetailView, FormView
 from django_filters.views import FilterView
 
 from django_tables2.views import SingleTableMixin
@@ -23,6 +23,16 @@ class ListTaskView(SingleTableMixin, RestrictTaskListMixin, FilterView):
 
     # django filter
     filterset_class = TaskFilter
+
+
+class TaskActivityListView(DetailView):
+    model = Task
+    template_name = 'task_activity_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['activities'] = self.object.activities.order_by('-created_date')
+        return context
 
 
 class TaskActivityView(SuccessMessageMixin, FormView):

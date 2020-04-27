@@ -13,7 +13,8 @@
   {% render_bundle 'task_list' %}
 <script>
     window.urls = {
-      task_activity_url: '{% url "tasks:task_activity" 0 %}'
+      task_activity_url: '{% url "tasks:task_activity" 0 %}',
+      get_task_activity_url: '{% url "tasks:list_task_activity" 0 %}'
     }
 </script>
 {% endblock main_js %}

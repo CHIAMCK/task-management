@@ -49,6 +49,7 @@ events:
 - delegate() - Attach a handler to one or more events for all elements that match the selector,
 now or in the future, based on a specific set of root elements.
 - preventDefault()
+- load() - Load data from the server and place the returned HTML into the matched elements.
 
 
 - eventObject.target - Returns the element that triggered the event

@@ -1,4 +1,5 @@
 import $ from 'jquery'
+import { getTaskActivitiesForm, loadTaskActivity } from './activity'
 
 $(document).ready(() => {
 
@@ -42,16 +43,11 @@ $(document).ready(() => {
         })
     })
 
-    $('[data-target="#add-task-activity-modal"').click(({ target }) => {
+    $('[data-target="#add-task-activity-modal"').click(async({ target }) => {
         currentTaskId = $(target).attr('data-task-id')
+        const activityList = $('#activities-list')
         const url = window.urls.task_activity_url.replace('0', currentTaskId)
-
-        $.ajax({
-            method: "GET",
-            url,
-            success: function(form) {
-                taskActivityModalForm.html(form)
-            }
-        })
+        await getTaskActivitiesForm(url, taskActivityModalForm)
+        loadTaskActivity(activityList, currentTaskId)
     })
 })
