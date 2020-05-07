@@ -1,5 +1,7 @@
 {% load static %}
 {% load i18n %}
+{% load notifications_tags %}
+{% notifications_unread as unread_count %}
 
 {% block main_css %}
 	<link href="{% static 'css/master_header.css' %}" rel="stylesheet">
@@ -23,14 +25,22 @@
     </ul>
     <!-- bootstrap navigation bar with dropdown -->
     <ul class="nav navbar-nav ml-auto">
-        <div>
-          <span>Welcome, {{ request.user }}</span>
-        </div>
+        <li class="nav-item">
+            <a href="{% url 'notifications:list' %}">
+                {% if unread_count %}
+                <span class="material-icons">notifications</span>
+                <span class="badge badge-danger">{{ unread_count }}</span>
+                {% else %}
+                <span class="material-icons">notifications_none</span>
+                {% endif %}
+            </a>
+        </li>
         <li class="nav-item dropdown">
             <!-- bootstrap dropdown -->
             <a class="nav-link nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                 aria-expanded="false">
                 <span class="material-icons">account_circle</span>
+                <span class="profile-name">Welcome, {{ request.user }}</span>
             </a>
             <!-- boostrap dropdown selection -->
             <div class="dropdown-menu dropdown-menu-right">

@@ -10,6 +10,7 @@ services:
     environment:
       - DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE}
       - STATIC_ROOT=${STATIC_ROOT}
+      - REDIS_HOST=redis
     links:
       - db
     command: 'python manage.py runserver_plus 0.0.0.0:8000'
@@ -27,6 +28,31 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=abc
       - MYSQL_DATABASE=task_db
+
+  redis:
+    image: redis:5.0
+
+  mailhog:
+    image: 'mailhog/mailhog'
+    expose:
+      - '1025'
+    ports:
+      - '8025:8025'
+
+  celery:
+    build:
+      context: ..
+      dockerfile: './docker/Dockerfile-web'
+    volumes:
+      - '..:/code'
+    restart: on-failure
+    environment:
+      - DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE}
+      - STATIC_ROOT=${STATIC_ROOT}
+      - REDIS_HOST=redis
+    command: celery -A sec worker -l debug
+    depends_on:
+      - redis
 
 volumes:
   db_data:

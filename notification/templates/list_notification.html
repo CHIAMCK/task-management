@@ -1,0 +1,41 @@
+{% extends 'master.html' %}
+{% load django_tables2 %}
+{% load render_table from django_tables2 %}
+{% load render_bundle from webpack_loader %}
+
+{% block main_js %}
+  {{block.super}}
+  {% render_bundle 'notification_list' %}
+<script>
+    window.urls = {
+      mark_as_read_url: '{% url "notifications:mark_read" %}',
+    }
+    window.token = {
+      csrfToken: '{{ csrf_token }}'
+    }
+</script>
+{% endblock main_js %}
+{% block main_content %}
+{% block main_css %}
+{{block.super}}
+{% endblock %}
+<form method="GET" action="{% querystring %}" id="table_form">
+  <div class="card">
+    <div class="card-header">
+      {{table_title}}
+      {% block filters %}<input type="hidden" value="{{request.GET.sort}}" name="sort" />{% endblock %}
+    </div>
+    <div class="card-body">
+      {% block table %}
+        <ul class="list-group mb-3 list-group-accent">
+                {% for notification in notifications %}
+                    <div class="list-group-item  d-flex w-100 justify-content-between {% if notification.unread %}list-group-item-info list-group-item-accent-info{% endif %}">
+                        <span>{{ notification.verb | safe }}</span>
+                        <span>{{ notification.timestamp | date }}</span>
+                    </div>
+                {% endfor %}
+            </ul>
+      {% endblock %}
+  </div>
+</form>
+{% endblock %}

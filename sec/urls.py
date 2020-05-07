@@ -28,6 +28,8 @@ urlpatterns = [
     path('dashboard/', include('dashboard.urls')),
     path('team_member/', include('team_member.urls')),
     path('task/', include('task.urls')),
+    path('notification/', include('notification.urls')),
+    path('sec/api/v1/', include('restapi.urls')),
 ]
 
 if settings.DEBUG:

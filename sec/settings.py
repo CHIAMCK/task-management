@@ -59,7 +59,10 @@ INSTALLED_APPS = [
     'webpack_loader',
     'company',
     'team_member',
-    'task'
+    'task',
+    'notifications',
+    'notification',
+    'rest_framework',
 ]
 
 # webpack loader
@@ -227,3 +230,31 @@ ACCOUNT_LOGOUT_ON_GET = False  # for allauth (Allauth no more supporting logout 
 ACCOUNT_FORMS = {
     'login': 'accounts.forms.OverrideLoginForm',
 }
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'restapi.v1.mixin.CsrfExemptSessionAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
+
+# CELERY stuff
+CELERY_BROKER_URL = f'redis://{os.environ.get("REDIS_HOST")}:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'UTC'
+# https://www.revsys.com/tidbits/celery-and-django-and-docker-oh-my/
+
+# email settings
+DEFAULT_FROM_EMAIL = 'email@email.com'
+EMAIL_HOST = 'mailhog'  # smtp.sendgrid.net
+EMAIL_HOST_USER = ''  # sendgrid account user
+EMAIL_HOST_PASSWORD = ''
+EMAIL_PORT = '1025'  # 587, smtp
+EMAIL_USE_TLS = False

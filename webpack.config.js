@@ -28,7 +28,8 @@ module.exports = {
     libs: './static/js/main',
     team_member_edit: './team_member/static/js/team_member_edit',
     task_add: './task/static/js/task_add',
-    task_list: './task/static/js/task_list'
+    task_list: './task/static/js/task_list',
+    notification_list: './notification/static/js/notification_list'
   },
   optimization: {
     runtimeChunk: "single",
