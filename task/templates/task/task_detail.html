@@ -1,0 +1,52 @@
+{% extends "master.html" %}
+{% load static %}
+{% load staticfiles %}
+
+{% load render_bundle from webpack_loader %}
+
+{% block main_css %}
+{% endblock %}
+
+{% block main_js %}
+{{block.super}}
+{% endblock %}
+
+{% block main_content %}
+    <div class="container-fluid">
+        <div class="animated fadeIn">
+            <div class="row">
+                <div class="col text-left">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Task details</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Attachments</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Activities</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <dl class="row">
+                            <dt class="col-sm-3">Title</dt>
+                            <dd class="col-sm-9">{{ task.title }}</dd>
+                            <dt class="col-sm-3">Description</dt>
+                            <dd class="col-sm-9">{{ task.description|default:'-' }}</dd>
+                            <dt class="col-sm-3">Status</dt>
+                            <dd class="col-sm-9">{{ task.status }}</dd>
+                            <dt class="col-sm-3">Due date</dt>
+                            <dd class="col-sm-9">{{ task.due_date }}</dd>
+                            <dt class="col-sm-3">Assigned to</dt>
+                            <dd class="col-sm-9">{{ task.assigned_to }}</dd>
+                        </dl>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

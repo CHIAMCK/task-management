@@ -50,3 +50,11 @@ class Task(models.Model):
         null=True,
         blank=True
     )
+
+    def get_status_color(self):
+        return {
+            status.NEW_INT: 'danger',
+            status.IN_PROGRESS_INT: 'info',
+            status.PENDING_INT: 'warning',
+            status.COMPLETED_INT: 'success'
+        }.get(self.status, 'danger')

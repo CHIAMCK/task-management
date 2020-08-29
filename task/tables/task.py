@@ -11,7 +11,7 @@ class TaskTable(tables.Table):
 
     title = tables.TemplateColumn(
         '''
-        <a href="{% url 'tasks:edit' record.pk %}">
+        <a href="{% url 'tasks:detail' record.pk %}">
             {{record.title}}
         </a>
         ''',
@@ -19,8 +19,13 @@ class TaskTable(tables.Table):
         attrs={'th': {'width': '400'}}
     )
 
-    status = tables.Column(
-        'Status', orderable=False
+    status = tables.TemplateColumn(
+        '''
+        <span class="badge badge-{{record.get_status_color}}">
+            {{record.get_status_display}}
+        </span>
+        ''',
+        orderable=False
     )
 
     assigned_to = tables.Column(
@@ -31,21 +36,29 @@ class TaskTable(tables.Table):
         'Created on', orderable=False
     )
 
-    action = tables.TemplateColumn(
+    # action = tables.TemplateColumn(
+    #     '''
+    #     <a href="#"
+    #        data-toggle="modal"
+    #        data-target="#add-task-activity-modal"
+    #        id="add-task-activity-button"
+    #     >
+    #         <i  data-task-id= {{ record.pk }}
+    #             style="color:#4F8DED;
+    #             font-size: 55px;
+    #             width: 55px"
+    #             class="material-icons align-middle">
+    #             add_circle
+    #         </i>
+    #     </a>
+    #     ''',
+    #     orderable=False
+    # )
+
+    action_menu = tables.TemplateColumn(
         '''
-        <a href="#"
-           data-toggle="modal"
-           data-target="#add-task-activity-modal"
-           id="add-task-activity-button"
-        >
-            <i  data-task-id= {{ record.pk }}
-                style="color:#3BF944;
-                font-size: 55px;
-                width: 55px"
-                class="material-icons align-middle">
-                add_circle
-            </i>
-        </a>
+        {% include 'partials/task_action_menu.html' with task=record %}
+
         ''',
         orderable=False
     )
@@ -56,6 +69,5 @@ class TaskTable(tables.Table):
         # add custom HTML attributes to the table
         attrs = {'class': 'table table-striped table-responsive-sm'}
         fields = (
-            'task_number', 'title', 'status', 'assigned_to', 'created_date',
-            'action'
+            'task_number', 'title', 'status', 'assigned_to', 'created_date'
         )

@@ -1,0 +1,10 @@
+<div class="dropdown">
+    <button class="btn btn-primary btn-circle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="material-icons align-middle">description</span>
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="{% url 'tasks:edit' task.pk %}">Edit Task</a>
+        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#add-task-activity-modal" id="add-task-activity-button" data-task-id="{{ task.pk }}">Task Activity</a>
+        <a class="dropdown-item" href="#">Complete task</a>
+    </div>
+</div>

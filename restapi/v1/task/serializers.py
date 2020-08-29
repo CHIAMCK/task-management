@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from task.models import Task
+from task.models import Task, TaskActivity
 
 
 class TaskSerializer(serializers.ModelSerializer):
@@ -18,3 +18,12 @@ class TaskSerializer(serializers.ModelSerializer):
 
     # SerializerMethodField
     # This is a read-only field. It gets its value by calling a method on the serializer class it is attached to.
+
+
+class TaskActivitySerializer(serializers.ModelSerializer):
+    # get user name instead user id
+    user = serializers.StringRelatedField(read_only=True)
+
+    class Meta:
+        model = TaskActivity
+        fields = ('note', 'activity_type', 'user', 'created_date')

@@ -1,4 +1,4 @@
-from restapi.v1.task.views import TaskAddView, TaskListView
+from restapi.v1.task.views import TaskAddView, TaskListView, TaskEditView, TaskDeleteView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -17,4 +17,6 @@ class TaskManageView(BaseManagerView):
     VIEWS_BY_METHOD = {
         'POST': TaskAddView.as_view,
         'GET': TaskListView.as_view,
+        'PUT': TaskEditView.as_view,
+        'DELETE': TaskDeleteView.as_view,
     }

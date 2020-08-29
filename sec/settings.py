@@ -168,6 +168,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
+# Asia/Kuala_Lumpur
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
